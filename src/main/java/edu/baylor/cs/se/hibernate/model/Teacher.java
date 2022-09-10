@@ -33,14 +33,14 @@ public class Teacher {
     @Column
     private String email;
 
+
     @NotNull
     @Column
-    @Size(min=10)
-    @Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$\n" , message = "must contain at least 10 digits")
+    @Size(min = 10)
+    @Pattern(regexp = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$", message = "must contain at least 10 digits")
     private String telephoneNumber;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher")
-    //annotation bellow is just for Jackson serialization in controller
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id")
@@ -75,8 +75,13 @@ public class Teacher {
         this.email = email;
     }
 
-    public String getTelephoneNumber(){return telephoneNumber;}
-    public void setTelephoneNumber(String telephoneNumber){this.telephoneNumber = telephoneNumber;}
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
+    }
 
     public Set getCourses() {
         return courses;

@@ -30,6 +30,7 @@ public class SuperRepository {
         teacher.setFirstName("Bob");
         teacher.setLastName("Porter");
         teacher.setEmail("bob@porter.com");
+        teacher.setTelephoneNumber("123 456 7890");
         em.persist(teacher);
 
         Course course = new Course();
@@ -48,7 +49,8 @@ public class SuperRepository {
         em.persist(course2);
 
         //Do you know why this is not working?
-        student2.getCourses().add(course);
+//        student2.getCourses().add(course);
+        course.getStudents().add(student2);
 
     }
 
@@ -62,8 +64,8 @@ public class SuperRepository {
     /**
      * List of courses with more than 2 students (3 and more)
      */
-    public List<Course> getCoursesByStudentName(){
-        return em.createNamedQuery("Course.findCoursesByStudentName").setParameter("name","Jimmy").getResultList();
+    public List<Course> getCoursesByStudentName(String name){
+        return em.createNamedQuery("Course.findCoursesByStudentName").setParameter("name",name).getResultList();
     }
 
     private Student createStudent(String name){

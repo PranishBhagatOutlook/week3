@@ -46,8 +46,4 @@ public class Student implements Serializable{
     public void setName(String name){
         this.name = name;
     }
-
-    public void addCourse(Course course) {
-        courses.add(course);
-    }
 }

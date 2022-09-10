@@ -27,6 +27,7 @@ public class ExampleTest {
         teacher.setEmail("email@email.com");
         teacher.setFirstName("John");
         teacher.setLastName("Roe");
+        teacher.setTelephoneNumber("123 456 7891");
         entityManager.persist(teacher);
         Teacher dbTeacher = (Teacher)entityManager.getEntityManager().createQuery("SELECT t FROM Teacher t WHERE t.firstName LIKE 'John' ").getResultList().get(0);
         assertThat(teacher.getFirstName()).isEqualToIgnoringCase(dbTeacher.getFirstName());

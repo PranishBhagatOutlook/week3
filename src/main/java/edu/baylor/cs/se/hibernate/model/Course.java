@@ -34,7 +34,10 @@ public class Course {
     private Teacher teacher;
 
     @ManyToOne
-    @JoinColumn(name = "room_id")
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
+    @JsonIdentityReference(alwaysAsId=true)
     private Room room;
 
     @ManyToMany//(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -47,16 +50,6 @@ public class Course {
             property = "id")
     @JsonIdentityReference(alwaysAsId=true)
     private Set<Student> students = new HashSet();
-
-
-
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
 
     public void setStudents(Set<Student> students) {
         this.students = students;
